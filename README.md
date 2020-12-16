@@ -9,3 +9,5 @@ My configuration files:
    5) i3-gaps window manager
    6) Sxhkd
    7) Urxvt terminal
+
+          
