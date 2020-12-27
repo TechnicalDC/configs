@@ -10,5 +10,6 @@ My configuration files:
    6) Sxhkd
    7) Urxvt terminal
    8) Polybar
+   9) Qtile window manager
 
           
