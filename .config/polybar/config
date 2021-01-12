@@ -17,13 +17,17 @@
 ;==========================================================
 
 [colors]
-background = #333333
-foreground = #ffffff
-primary = #aaaaaa
-secondary = #aaa
-alert = #bd2c40
+background = ${xrdb:background}
+foreground = ${xrdb:foreground}
+alert = ${xrdb:color1}
+red = ${xrdb:color1}
+green = ${xrdb:color2}
+yellow = ${xrdb:color3}
+blue = ${xrdb:color4}
+magenta = ${xrdb:color5}
+cyan = ${xrdb:color6}
 
-[bar/polybar_bar]
+[bar/main]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
 height = 20
@@ -47,17 +51,15 @@ padding-right = 0
 module-margin-left = 0
 module-margin-right = 0
 
-font-0 = fixed:pixelsize=8;1
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = siji:pixelsize=8;1
+font-0 = fixed:pixelsize=9;1
+font-1 = "Fira Code Medium:fontformat=truetype:size=9:antialias=false";0
 
-modules-left = bspwm i3
-;modules-center = mpd
-modules-right = xkeyboard filesystem xbacklight alsa pulseaudio memory cpu wlan eth battery temperature date powermenu
+modules-left = bspwm i3 xwindow
+modules-right =  pulseaudio cpu memory temperature date powermenu reload
 
 tray-position = right
 tray-padding = 3
-tray-background = #cc342b
+tray-background = ${colors.background}
 
 ;wm-restack = i3
 
@@ -74,7 +76,10 @@ cursor-click = pointer
 
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:30:...%
+label = "|  %title:0:40:...%"
+label-foreground = ${colors.foreground}
+label-padding = 1
+;label-margin = 1
 
 [module/xkeyboard]
 ;type = internal/xkeyboard
@@ -100,11 +105,11 @@ interval = 25
 
 mount-0 = /
 
-label-mounted = STORAGE: %percentage_used%%
+label-mounted = STORAGE: %percentage_used%% 
 label-mounted-foreground = ${colors.foreground}
-label-mounted-background = #cc342b
-label-mounted-padding = 2
-label-mounted-margin = 1
+label-mounted-background = ${colors.background}
+label-mounted-padding = 3
+;label-mounted-margin = 1
 ;label-unmounted = %mountpoint% not mounted
 ;label-unmounted-foreground = ${colors.foreground-alt}
 
@@ -112,18 +117,19 @@ label-mounted-margin = 1
 type = internal/bspwm
 
 label-focused = %index%
-label-focused-background =  #198844
-label-focused-foreground = ${colors.foreground}
-label-focused-underline=  #198844
+label-focused-background = ${colors.foreground}
+label-focused-foreground=  ${colors.background}
+label-focused-underline=  ${colors.foreground}
 label-focused-padding = 2
 
-label-occupied = %index%
+label-occupied = %index% 
 label-occupied-padding = 2
+label-occupied-underline = ${colors.foreground}
 label-occupied-foreground = ${colors.foreground}
-label-occupied-underline = #198844
 
-label-urgent = %index%!
-label-urgent-background = ${colors.alert}
+label-urgent = %index%
+label-urgent-foreground = ${colors.foreground}
+label-urgent-underline = ${colors.alert}
 label-urgent-padding = 2
 
 label-empty = %index%
@@ -149,13 +155,15 @@ label-mode-background = $background
 
 ; focused = Active workspace on focused monitor
 label-focused = %index%
-label-focused-background = #198844
-label-focused-underline= #198844
+label-focused-background = ${colors.background}
+label-focused-underline = ${colors.foreground} 
+label-focused-foreground = ${colors.foreground}
 label-focused-padding = 2
 
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = %index%
 label-unfocused-padding = 2
+label-unfocused-foreground = ${colors.foreground}
 
 ; visible = Active workspace on unfocused monitor
 label-visible = %index%
@@ -165,25 +173,11 @@ label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
 label-urgent = %index%
-label-urgent-background = ${colors.alert}
+label-urgent-underline = ${colors.alert}
 label-urgent-padding = 2
 
 ; Separator in between workspaces
 ; label-separator = |
-
-
-[module/mpd]
-type = internal/mpd
-format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
-
-icon-prev = <
-icon-stop = stop
-icon-play = play
-icon-pause = pause
-icon-next = >
-
-label-song-maxlen = 25
-label-song-ellipsis = true
 
 [module/xbacklight]
 type = internal/xbacklight
@@ -215,9 +209,8 @@ format-prefix-foreground = #
 ;format-underline = #f90000
 label = CPU: %percentage:2%%
 label-foreground = ${colors.foreground}
-label-background = #198844
-label-padding = 2
-;label-margin = 0
+label-padding = 1
+;label-margin = 1
 
 [module/memory]
 type = internal/memory
@@ -227,20 +220,19 @@ format-prefix-foreground = ${colors.foreground}
 ;format-underline = #4bffdc
 label = RAM: %percentage_used%%
 label-foreground = ${colors.foreground}
-label-background = #fba922
-label-padding = 2
+label-padding = 1
+;label-margin = 1
 
 [module/wlan]
 type = internal/network
 interface = wlan0
 interval = 1.0
 
-format-connected = <ramp-signal> <label-connected>
+format-connected = <label-connected>
 ;format-connected-underline = #55ff55
 label-connected = WIFI: %essid% IP: %local_ip%
 label-connected-foreground = ${colors.foreground}
-label-connected-background = #3971ed
-label-connected-padding = 2
+label-connected-padding = 1
 ;label-connected-margin = 1
 
 ;format-disconnected =
@@ -251,13 +243,6 @@ label-connected-padding = 2
 ;label-disconnected-background = #3971ed
 ;label-disconned
 ;label-disconnected-foreground = #ff0000
-
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
-ramp-signal-foreground = ${colors.foreground}
 
 [module/eth]
 type = internal/network
@@ -279,7 +264,7 @@ format-disconnected =
 type = internal/date
 interval = 5
 
-date = "%a %d-%m-%Y"
+date = "%a | %d-%m-%Y"
 ;date-alt = " %Y-%m-%d"
 
 time = "%I:%M %p"
@@ -289,11 +274,10 @@ format-prefix = 
 format-prefix-foreground = #0000ff
 ;format-underline = #0a6cf5
 
-label = %date% %time%
+label = %date% | %time%
 label-foreground = ${colors.foreground}
-label-background = #a36ac7
-label-padding = 2
-label-margin = 1
+label-padding = 1
+;label-margin = 1
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -301,30 +285,12 @@ type = internal/pulseaudio
 format-volume = <label-volume>
 label-volume = VOL: %percentage%%
 label-volume-foreground = ${colors.foreground}
-label-volume-background = #a36ac7
-label-volume-padding = 2
+label-volume-padding = 1
 
 label-muted = MUTED!
 label-muted-foreground = ${colors.foreground}
-label-muted-background = #a36ac7
-label-muted-padding = 2
+label-muted-padding = 1
 
-bar-volume-width = 10
-bar-volume-foreground-0 = #ffffff
-bar-volume-foreground-1 = #ffffff
-bar-volume-foreground-2 = #ffffff
-bar-volume-foreground-3 = #ffffff
-bar-volume-foreground-4 = #ffffff
-bar-volume-foreground-5 = #ffffff
-bar-volume-foreground-6 = #ffffff
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = $foreground
 
 [module/alsa]
 ;type = internal/alsa
@@ -400,9 +366,8 @@ format-warn = <ramp> <label-warn>
 label = TEMP: %temperature-c%
 label-warn = TEMP: %temperature-c%
 label-warn-foreground = ${colors.foreground}
-label-background = #fba922
-label-padding = 2
-;label-margin = 1
+label-padding = 1
+;label-margin = 0
 
 ramp-0 = 
 ramp-1 = 
@@ -415,14 +380,14 @@ type = custom/menu
 expand-right = false
 
 format-spacing = 1
-format-background = #3971ed
-format-margin = 1
-format-padding = 2
+format-foreground = ${colors.foreground}
+;format-margin = 1
+format-padding = 1
 
-label-open = " TECHNICALDC "
-label-open-fomreground = ${colors.foreground}
+label-open = " [ TECHNICALDC ] "
+label-open-foreground = ${colors.foreground}
 label-close = " X "
-label-close-fmoreground = ${colors.foreground}
+label-close-foreground = ${colors.foreground}
 label-separator = |
 label-separator-foreground = ${colors.foreground}
 
@@ -432,8 +397,8 @@ menu-0-1 = " Power off "
 menu-0-1-exec = menu-open-2
 menu-0-2 = " Logout "
 menu-0-2-exec = menu-open-3
-;menu-0-3 = " Lock "
-;menu-0-3-exec = menu-open-4
+menu-0-3 = " Lock "
+menu-0-3-exec = menu-open-4
 
 menu-1-0 = " Yes " 
 menu-1-0-exec = systemctl reboot
@@ -450,10 +415,15 @@ menu-3-0-exec = bspc quit || i3-msg exit
 menu-3-1 = " No "
 menu-3-1-exec = menu-open-0
 
-;menu-4-0 = " Yes "
-;menu-4-0-exec = betterlockscreen -l blur
-;menu-4-1 = " No "
-;menu-4-1-exec = menu-open-0
+menu-4-0 = " Yes "
+menu-4-0-exec = mantablockscreen -cc
+menu-4-1 = " No "
+menu-4-1-exec = menu-open-0
+
+[module/reload]
+type= custom/script
+;label= RELOAD
+;click-left=killall -q polybar && polybar polybar_bar &
 
 [settings]
 screenchange-reload = true
