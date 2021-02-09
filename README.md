@@ -11,5 +11,10 @@ My configuration files:
    7) Urxvt terminal
    8) Polybar
    9) Qtile window manager
+   10) Picom
+   11) Rofi
+   
+
+
 
           
