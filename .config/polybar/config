@@ -30,32 +30,34 @@ cyan = ${xrdb:color6}
 [bar/main]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
-height = 20
+height = 24
 offset-x = 0
 offset-y = 0
 radius = 0
 fixed-center = true
 
-line-size = 2
+line-size = 0
 line-color = #f00
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-border-size = 3
+border-size = 0
 border-color = ${colors.background}
 
 padding-left = 0
 padding-right = 0
 
-module-margin-left = 0
-module-margin-right = 0
+module-margin-left = 1
+module-margin-right = 1
 
-font-0 = fixed:pixelsize=9;1
-font-1 = "Fira Code Medium:fontformat=truetype:size=9:antialias=false";0
+font-0 = fixed:pixelsize=9;0
+font-1 = Font Awesome 5 Free Regular:style=Regular:size=10;1
+font-2 = Font Awesome 5 Free Solid:style=Solid:size=10;1
+font-3 = Font Awesome 5 Free Brand:style=Regular:size=10;1
 
-modules-left = bspwm i3 xwindow
-modules-right =  pulseaudio cpu memory temperature date powermenu reload
+modules-left = bspwm i3 xwindow 
+modules-right =  pulseaudio cpu memory temperature date menu 
 
 tray-position = right
 tray-padding = 3
@@ -116,26 +118,27 @@ label-mounted-padding = 3
 [module/bspwm]
 type = internal/bspwm
 
-label-focused = %index%
-label-focused-background = ${colors.foreground}
-label-focused-foreground=  ${colors.background}
-label-focused-underline=  ${colors.foreground}
-label-focused-padding = 2
+label-focused = %{T3}%{T-}
+label-focused-foreground=  #5481b6
+label-focused-background=  ${colors.background}
+label-focused-underline=  #5481b6
+label-focused-padding = 1
 
-label-occupied = %index% 
-label-occupied-padding = 2
+label-occupied = %{T3}%{T-} 
+label-occupied-padding = 1
+label-occupied-background = ${colors.background}
 label-occupied-underline = ${colors.foreground}
 label-occupied-foreground = ${colors.foreground}
 
 label-urgent = %index%
 label-urgent-foreground = ${colors.foreground}
 label-urgent-underline = ${colors.alert}
-label-urgent-padding = 2
+label-urgent-padding = 1
 
-label-empty = %index%
+label-empty = 
 label-empty-foreground = ${colors.foreground}
 label-empty-background = ${colors.background}
-label-empty-padding = 2
+label-empty-padding = 1
 
 ; Separator in between workspaces
 ; label-separator = |
@@ -155,7 +158,7 @@ label-mode-background = $background
 
 ; focused = Active workspace on focused monitor
 label-focused = %index%
-label-focused-background = ${colors.background}
+label-focused-background = #5481b6
 label-focused-underline = ${colors.foreground} 
 label-focused-foreground = ${colors.foreground}
 label-focused-padding = 2
@@ -207,7 +210,7 @@ interval = 2
 format-prefix = " "
 format-prefix-foreground = #
 ;format-underline = #f90000
-label = CPU: %percentage:2%%
+label =  %percentage:2%%
 label-foreground = ${colors.foreground}
 label-padding = 1
 ;label-margin = 1
@@ -218,7 +221,8 @@ interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground}
 ;format-underline = #4bffdc
-label = RAM: %percentage_used%%
+
+label =  %percentage_used%%
 label-foreground = ${colors.foreground}
 label-padding = 1
 ;label-margin = 1
@@ -264,7 +268,7 @@ format-disconnected =
 type = internal/date
 interval = 5
 
-date = "%a | %d-%m-%Y"
+date = %a, %d-%m-%Y
 ;date-alt = " %Y-%m-%d"
 
 time = "%I:%M %p"
@@ -274,7 +278,7 @@ format-prefix = 
 format-prefix-foreground = #0000ff
 ;format-underline = #0a6cf5
 
-label = %date% | %time%
+label =  %date%    %time%
 label-foreground = ${colors.foreground}
 label-padding = 1
 ;label-margin = 1
@@ -283,11 +287,11 @@ label-padding = 1
 type = internal/pulseaudio
 
 format-volume = <label-volume>
-label-volume = VOL: %percentage%%
+label-volume =  %percentage%%
 label-volume-foreground = ${colors.foreground}
 label-volume-padding = 1
 
-label-muted = MUTED!
+label-muted =  MUTED!
 label-muted-foreground = ${colors.foreground}
 label-muted-padding = 1
 
@@ -363,8 +367,8 @@ format = <ramp> <label>
 format-warn = <ramp> <label-warn>
 ;format-warn-underline = ${self.format-underline}
 
-label = TEMP: %temperature-c%
-label-warn = TEMP: %temperature-c%
+label =  %temperature-c%
+label-warn =  %temperature-c%
 label-warn-foreground = ${colors.foreground}
 label-padding = 1
 ;label-margin = 0
@@ -377,53 +381,53 @@ ramp-foreground = ${colors.foreground}
 [module/powermenu]
 type = custom/menu
 
-expand-right = false
+#expand-right = false
 
-format-spacing = 1
-format-foreground = ${colors.foreground}
+#format-spacing = 1
+#format-foreground = ${colors.foreground}
 ;format-margin = 1
-format-padding = 1
+#format-padding = 1
 
-label-open = " [ TECHNICALDC ] "
-label-open-foreground = ${colors.foreground}
-label-close = " X "
-label-close-foreground = ${colors.foreground}
-label-separator = |
-label-separator-foreground = ${colors.foreground}
+#label-open = 
+#label-open-foreground = ${colors.foreground}
+#label-close = 
+#label-close-foreground = ${colors.foreground}
+#label-separator =" | "
+#label-separator-foreground = ${colors.foreground}
 
-menu-0-0 = " Reboot "
-menu-0-0-exec = menu-open-1
-menu-0-1 = " Power off "
-menu-0-1-exec = menu-open-2
-menu-0-2 = " Logout "
-menu-0-2-exec = menu-open-3
-menu-0-3 = " Lock "
-menu-0-3-exec = menu-open-4
+#menu-0-0 = 
+#menu-0-0-exec = menu-open-1
+#menu-0-1 = 
+#menu-0-1-exec = menu-open-2
+#menu-0-2 = 
+#menu-0-2-exec = menu-open-3
+#menu-0-3 = 
+#menu-0-3-exec = menu-open-4
 
-menu-1-0 = " Yes " 
-menu-1-0-exec = systemctl reboot
-menu-1-1 = " No "
-menu-1-1-exec = menu-open-0
+#menu-1-0 =  
+#menu-1-0-exec = systemctl reboot
+#menu-1-1 = 
+#menu-1-1-exec = menu-open-0
 
-menu-2-0 = " Yes "
-menu-2-0-exec = systemctl poweroff
-menu-2-1 = " No " 
-menu-2-1-exec = menu-open-0
+#menu-2-0 = 
+#menu-2-0-exec = systemctl poweroff
+#menu-2-1 =  
+#menu-2-1-exec = menu-open-0
 
-menu-3-0 = " Yes "
-menu-3-0-exec = bspc quit || i3-msg exit
-menu-3-1 = " No "
-menu-3-1-exec = menu-open-0
+#menu-3-0 = 
+#menu-3-0-exec = bspc quit || i3-msg exit
+#menu-3-1 = 
+#menu-3-1-exec = menu-open-0
 
-menu-4-0 = " Yes "
-menu-4-0-exec = mantablockscreen -cc
-menu-4-1 = " No "
-menu-4-1-exec = menu-open-0
+#menu-4-0 = 
+#menu-4-0-exec = mantablockscreen -cc
+#menu-4-1 = 
+#menu-4-1-exec = menu-open-0
 
-[module/reload]
+[module/menu]
 type= custom/script
-;label= RELOAD
-;click-left=killall -q polybar && polybar polybar_bar &
+exec = echo "%{A1: ./.config/rofi/scripts/powermenu.sh :}  %{A}"
+interval = 0
 
 [settings]
 screenchange-reload = true
