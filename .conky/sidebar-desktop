@@ -1,0 +1,103 @@
+--[[
+Conky, a system monitor, based on torsmo
+
+Any original torsmo code is licensed under the BSD license
+
+All code written since the fork of torsmo is licensed under the GPL
+
+Please see COPYING for details
+
+Copyright (c) 2004, Hannu Saransaari and Lauri Hakkarainen
+Copyright (c) 2005-2019 Brenden Matthews, Philip Kovacs, et. al. (see AUTHORS)
+All rights reserved.
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+]]
+
+conky.config = {
+    alignment = 'middle_right',
+    background = false,
+    border_width = 1,
+    border_inner_margin = 16,
+    cpu_avg_samples = 2,
+    default_color = 'white',
+    default_outline_color = 'white',
+    default_shade_color = 'white',
+    color1 = '#5294e2',
+    double_buffer = true,
+    draw_borders = false,
+    draw_graph_borders = false,
+    draw_outline = false,
+    draw_shades = false,
+    extra_newline = false,
+    font = 'Ubuntu:size=9',
+    gap_x = 30,
+    gap_y = -10,
+    minimum_width = 200,
+    minimum_height = 400,
+    net_avg_samples = 2,
+    no_buffers = true,
+    out_to_console = false,
+    out_to_ncurses = false,
+    out_to_stderr = false,
+    out_to_x = true,
+    own_window = true,
+    own_window_colour = '#282a33',
+    own_window_class = 'Conky',
+    own_window_type = 'desktop',
+    show_graph_range = false,
+    show_graph_scale = false,
+    stippled_borders = 0,
+    update_interval = 1.0,
+    uppercase = false,
+    use_spacer = 'none',
+    use_xft = true,
+}
+
+conky.text = [[
+${font Voltage:pixelsize=80}$alignr$color1${time %I:%M %p}${font}${color}
+$alignr${time %A, %d %B %Y}
+
+${alignc}${image ~/.conky/image-03.jpg (-p 32,100) (-s 150x150)}
+
+
+
+
+
+
+
+
+
+
+${color1}UPTIME:${color} ${uptime}
+
+${color1}CPU: ${color}
+Core 1: ${cpu cpu1}%${goto 120}Core 2: ${cpu cpu2}%
+$color1${cpugraph cpu1 40,95}${goto 120}${cpugraph cpu2 40,95}${color}
+
+${color1}RAM:${color} $mem / $memmax
+$color1${memgraph 40,200}${color}
+
+${color1}STORAGE:${color}
+
+Root: ${fs_used /}/${fs_size /}
+${color1}${fs_bar 10,200 /}${color}
+
+New Volumn: ${fs_used /mnt/NewVolumn}/${fs_size /mnt/NewVolumn}
+${color1}${fs_bar 10,200 /mnt/NewVolumn}${color}
+
+${color1}NETWORK:${color}
+Access point: ${wireless_essid wlan0}
+Mode: ${wireless_mode wlan0}
+IP: ${addr wlan0}
+]]
