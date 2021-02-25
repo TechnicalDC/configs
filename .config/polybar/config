@@ -27,12 +27,14 @@ blue = ${xrdb:color4}
 magenta = ${xrdb:color5}
 cyan = ${xrdb:color6}
 
+highlight = #dc0fa5
+
 [bar/main]
 ;monitor = ${env:MONITOR:HDMI-1}
-width = 100%
-height = 24
-offset-x = 0
-offset-y = 0
+width = 98.8%
+height = 26
+offset-x = 8
+offset-y = 8
 radius = 0
 fixed-center = true
 
@@ -42,84 +44,51 @@ line-color = #f00
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-border-size = 0
-border-color = ${colors.background}
+border-size = 2
+border-color = #dc0fa5
 
-padding-left = 0
-padding-right = 0
+padding-left = 2
+padding-right = 2
 
 module-margin-left = 1
 module-margin-right = 1
 
-font-0 = fixed:pixelsize=9;0
+font-0 = Ubuntu:pixelsize=10;0
 font-1 = Font Awesome 5 Free Regular:style=Regular:size=10;1
 font-2 = Font Awesome 5 Free Solid:style=Solid:size=10;1
 font-3 = Font Awesome 5 Free Brand:style=Regular:size=10;1
 
-modules-left = bspwm i3 xwindow 
-modules-right =  pulseaudio cpu memory temperature date menu 
+modules-left = i3 bspwm xwindow
+modules-right = pulseaudio cpu memory date 
 
 tray-position = right
-tray-padding = 3
+tray-padding = 5
 tray-background = ${colors.background}
 
-;wm-restack = i3
-
-;override-redirect = true
-
-scroll-up = i3wm-wsnext
-scroll-down = i3wm-wsprev
-
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
+separator = " | "
 
 cursor-click = pointer
 ;cursor-scroll = ns-resize
 
+[bar/i3-bar]
+inherit = bar/main
+
+padding-left = 0
+override-redirect = true
+wm-restack = i3
+
 [module/xwindow]
 type = internal/xwindow
-label = "|  %title:0:40:...%"
+label =  %title:0:25:...%
 label-foreground = ${colors.foreground}
 label-padding = 1
 ;label-margin = 1
-
-[module/xkeyboard]
-;type = internal/xkeyboard
-;blacklist-0 = num lock
-
-;format-prefix = " "
-;format-prefix-foreground = ${colors.foreground}
-;format-prefix-underline = ${colors.background}
-
-;label-layout = %layout%
-;label-layout-background =  #a36ac7
-;label-layout-underline = ${colors.secondary}
-
-;label-layout-padding = 0
-;label-layout-margin = 0
-;label-indicator-margin = 0
-;label-indicator-background = ${colors.background}
-;label-indicator-underline = ${colors.secondary}
-
-[module/filesystem]
-type = internal/fs
-interval = 25
-
-mount-0 = /
-
-label-mounted = STORAGE: %percentage_used%% 
-label-mounted-foreground = ${colors.foreground}
-label-mounted-background = ${colors.background}
-label-mounted-padding = 3
-;label-mounted-margin = 1
-;label-unmounted = %mountpoint% not mounted
-;label-unmounted-foreground = ${colors.foreground-alt}
 
 [module/bspwm]
 type = internal/bspwm
 
 label-focused = %{T3}%{T-}
-label-focused-foreground=  #5481b6
+label-focused-foreground= ${colors.highlight}
 label-focused-background=  ${colors.background}
 label-focused-underline=  #5481b6
 label-focused-padding = 1
@@ -130,7 +99,7 @@ label-occupied-background = ${colors.background}
 label-occupied-underline = ${colors.foreground}
 label-occupied-foreground = ${colors.foreground}
 
-label-urgent = %index%
+label-urgent =  %{T3}%{T-} 
 label-urgent-foreground = ${colors.foreground}
 label-urgent-underline = ${colors.alert}
 label-urgent-padding = 1
@@ -152,20 +121,20 @@ wrapping-scroll = false
 ; Only show workspaces on the same output as the bar
 ;pin-workspaces = true
 
-label-mode-padding = 2
+label-mode-padding = 3
 label-mode-foreground = $foreground
 label-mode-background = $background
 
 ; focused = Active workspace on focused monitor
 label-focused = %index%
-label-focused-background = #5481b6
+label-focused-background = ${colors.background}
 label-focused-underline = ${colors.foreground} 
-label-focused-foreground = ${colors.foreground}
-label-focused-padding = 2
+label-focused-foreground = ${colors.highlight}
+label-focused-padding = 3
 
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = %index%
-label-unfocused-padding = 2
+label-unfocused-padding = 3
 label-unfocused-foreground = ${colors.foreground}
 
 ; visible = Active workspace on unfocused monitor
@@ -177,32 +146,18 @@ label-visible-padding = ${self.label-focused-padding}
 ; urgent = Workspace with urgency hint set
 label-urgent = %index%
 label-urgent-underline = ${colors.alert}
-label-urgent-padding = 2
+label-urgent-padding = 3
 
 ; Separator in between workspaces
 ; label-separator = |
 
-[module/xbacklight]
+[module/backlight]
 type = internal/xbacklight
 
-format = <label> <bar>
-label = BL
+output = VGA1
 
-bar-width = 10
-bar-indicator = |
-bar-indicator-foreground = #fff
-bar-indicator-font = 2
-bar-fill = ─
-bar-fill-font = 2
-bar-fill-foreground = #9f78e1
-bar-empty = ─
-bar-empty-font = 2
-bar-empty-foreground = ${colors.foreground-alt}
-
-[module/backlight-acpi]
-inherit = module/xbacklight
-type = internal/backlight
-card = intel_backlight
+format = <label>
+label =  %percentage%%
 
 [module/cpu]
 type = internal/cpu
@@ -215,6 +170,8 @@ label-foreground = ${colors.foreground}
 label-padding = 1
 ;label-margin = 1
 
+click-left = urxvt -e htop &
+
 [module/memory]
 type = internal/memory
 interval = 2
@@ -226,6 +183,8 @@ label =  %percentage_used%%
 label-foreground = ${colors.foreground}
 label-padding = 1
 ;label-margin = 1
+
+click-left = htop &
 
 [module/wlan]
 type = internal/network
@@ -247,22 +206,6 @@ label-connected-padding = 1
 ;label-disconnected-background = #3971ed
 ;label-disconned
 ;label-disconnected-foreground = #ff0000
-
-[module/eth]
-type = internal/network
-interface = eth0
-interval = 3.0
-
-;format-connected-underline = #55aa55
-format-connected-prefix = " "
-format-connected-prefix-foreground = ${colors.foreground}
-label-connected = %local_ip%
-
-format-disconnected =
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
 
 [module/date]
 type = internal/date
@@ -287,7 +230,7 @@ label-padding = 1
 type = internal/pulseaudio
 
 format-volume = <label-volume>
-label-volume =  %percentage%%
+label-volume =  %percentage%% 
 label-volume-foreground = ${colors.foreground}
 label-volume-padding = 1
 
@@ -295,67 +238,7 @@ label-muted =  MUTED!
 label-muted-foreground = ${colors.foreground}
 label-muted-padding = 1
 
-
-[module/alsa]
-;type = internal/alsa
-
-;format-volume = <label-volume> <bar-volume>
-;label-volume = VOL
-;label-volume-foreground = ${root.foreground}
-
-;format-muted-prefix = " "
-;format-muted-foreground = ${colors.foreground-alt}
-;label-muted = sound muted
-
-;bar-volume-width = 10
-;bar-volume-foreground-0 = #55aa55
-;bar-volume-foreground-1 = #55aa55
-;bar-volume-foreground-2 = #55aa55
-;bar-volume-foreground-3 = #55aa55
-;bar-volume-foreground-4 = #55aa55
-;bar-volume-foreground-5 = #f5a70a
-;bar-volume-foreground-6 = #ff5555
-;bar-volume-gradient = false
-;bar-volume-indicator = |
-;bar-volume-indicator-font = 2
-;bar-volume-fill = ─
-;bar-volume-fill-font = 2
-;bar-volume-empty = ─
-;bar-volume-empty-font = 2
-;bar-volume-empty-foreground = ${colors.foreground-alt}
-
-[module/battery]
-type = internal/battery
-battery = BAT0
-adapter = AC
-full-at = 98
-
-format-charging = <animation-charging> <label-charging>
-;format-charging-underline = #ffb52a
-
-format-discharging = <animation-discharging> <label-discharging>
-;format-discharging-underline = ${self.format-charging-underline}
-
-format-full-prefix = " "
-format-full-prefix-foreground = ${colors.foreground-alt}
-;format-full-underline = ${self.format-charging-underline}
-
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-foreground = ${colors.foreground-alt}
-
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-foreground = ${colors.foreground-alt}
-animation-charging-framerate = 750
-
-animation-discharging-0 = 
-animation-discharging-1 = 
-animation-discharging-2 = 
-animation-discharging-foreground = ${colors.foreground-alt}
-animation-discharging-framerate = 750
+click-right = pavucontrol &
 
 [module/temperature]
 type = internal/temperature
@@ -377,57 +260,6 @@ ramp-0 = 
 ramp-1 = 
 ramp-2 = 
 ramp-foreground = ${colors.foreground}
-
-[module/powermenu]
-type = custom/menu
-
-#expand-right = false
-
-#format-spacing = 1
-#format-foreground = ${colors.foreground}
-;format-margin = 1
-#format-padding = 1
-
-#label-open = 
-#label-open-foreground = ${colors.foreground}
-#label-close = 
-#label-close-foreground = ${colors.foreground}
-#label-separator =" | "
-#label-separator-foreground = ${colors.foreground}
-
-#menu-0-0 = 
-#menu-0-0-exec = menu-open-1
-#menu-0-1 = 
-#menu-0-1-exec = menu-open-2
-#menu-0-2 = 
-#menu-0-2-exec = menu-open-3
-#menu-0-3 = 
-#menu-0-3-exec = menu-open-4
-
-#menu-1-0 =  
-#menu-1-0-exec = systemctl reboot
-#menu-1-1 = 
-#menu-1-1-exec = menu-open-0
-
-#menu-2-0 = 
-#menu-2-0-exec = systemctl poweroff
-#menu-2-1 =  
-#menu-2-1-exec = menu-open-0
-
-#menu-3-0 = 
-#menu-3-0-exec = bspc quit || i3-msg exit
-#menu-3-1 = 
-#menu-3-1-exec = menu-open-0
-
-#menu-4-0 = 
-#menu-4-0-exec = mantablockscreen -cc
-#menu-4-1 = 
-#menu-4-1-exec = menu-open-0
-
-[module/menu]
-type= custom/script
-exec = echo "%{A1: ./.config/rofi/scripts/powermenu.sh :}  %{A}"
-interval = 0
 
 [settings]
 screenchange-reload = true
