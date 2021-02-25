@@ -15,9 +15,10 @@
 for_window [class="^.*"] border pixel 2
 gaps inner 8
 gaps outer 0
+gaps top 40
 
 # smart_gaps on
-smart_borders on
+# smart_borders on
 
 bindsym $mod+z		gaps outer current plus 5
 bindsym $mod+Shift+z	gaps outer current minus 5
@@ -94,7 +95,7 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+s floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
@@ -178,8 +179,8 @@ bindsym $mod+Return exec urxvt
 # COLOR SETTINGS #
 ##################
 
-set $bg-color 	         #5481b6
-set $inactive-bg-color   #282a33
+set $bg-color 	         #dc0fa5
+set $inactive-bg-color   #000B1E
 set $text-color          #f3f4f5
 set $inactive-text-color #676E7D
 set $urgent-bg-color     #ff0000
@@ -213,9 +214,12 @@ bindsym $mod+shift+F12 exec pamixer --set-volume 0
 ######################
 
 #exec feh --bg-fill --randomize /home/dilip/Wallpapers/ &
-exec nitrogen --restore
-exec polybar -c ~/.config/polybar/config main
-exec nm-applet
-exec picom --experimental-backends
-exec conky -c .conky/sidebar-i3 
+#exec nitrogen --restore &
+exec polybar -c ~/.config/polybar/config i3-bar & 
+exec nm-applet &
+exec telegram-desktop -startintray &
+exec picom --experimental-backends &
+exec wal -R &
+exec urxvtd -q -o -f &
+#exec conky -c .conky/sidebar-i3 
 #exec compton --config ~/.config/compton/compton.conf
