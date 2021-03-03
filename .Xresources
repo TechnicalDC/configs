@@ -1,52 +1,52 @@
-!! URxvt configurations.
+
+!! URXVT CONFIGURATIONS
 !! Colorscheme
 ! special
-*.foreground:   #c5c8c6
-!*.background:   #1d1f21
-*.background:	#222222
-*.cursorColor:  #c5c8c6
+*.foreground:   #16b9c3
+*.background:   #000b1e
+*.cursorColor:  #fff
 
 ! black
-*.color0:       #1d1f21
-*.color8:       #969896
+*.color0:       #040005
+*.color8:       #040005
 
 ! red
-*.color1:       #cc342b
-*.color9:       #cc342b
+*.color1:       #6E0163
+*.color9:       #6E0163
 
 ! green
-*.color2:       #198844
-*.color10:      #198844
+*.color2:       #BD0354
+*.color10:      #BD0354
 
 ! yellow
-*.color3:       #fba922
-*.color11:      #fba922
+*.color3:       #970266
+*.color11:      #970266
 
 ! blue
-*.color4:       #3971ed
-*.color12:      #3971ed
+*.color4:       #651993
+*.color12:      #651993
 
 ! magenta
-*.color5:       #a36ac7
-*.color13:      #a36ac7
+*.color5:       #4A3DBF
+*.color13:      #4A3DBF
 
 ! cyan
-*.color6:       #3971ed
-*.color14:      #3971ed
+*.color6:       #962098
+*.color14:      #962098
 
 ! white
-*.color7:       #c5c8c6
-*.color15:      #ffffff
+*.color7:       #cf9bd4
+*.color15:      #cf9bd4
 
 
 !! URxvt Appearance
 URxvt.letterSpace: 0
 URxvt.lineSpace: 0
 URxvt.geometry: 92x24
-URxvt.internalBorder: 25
+URxvt.internalBorder: 24
 URxvt.cursorBlink: true
 URxvt.cursorUnderline: false
-URxvt.saveline: 2048
+URxvt.saveline: 5120
 URxvt.scrollBar: false
 URxvt.scrollBar_right: false
 URxvt.urgentOnBell: true
@@ -58,18 +58,21 @@ URxvt.font: xft:Fira Code Retina:style=Retina:pixelsize=12
 URxvt.boldFont: xft:Fira Code:style=Bold:pixelsize:12
 
 
-!! Copy Paste & Other Extensions
+!!  Extensions
 URxvt.perl-ext-common: default,clipboard,url-select,keyboard-select,font-size
-URxvt.keysum.C-Up: font-size:increase
-URxvt.keysum.C-Down: font-size:decrease 
-! URxvt.copyCommand: xclip -i -selection clipboard
-! URxvt.pasteCommand: xclip -o -selection clipboard
+!URxvt.keysum.Control-equal: font-size:bigger
+!URxvt.keysum.Control-minus: font-size:smaller
+!URxvt.keysum.Control-0: font-size:reset
+!URxvt.keysum.C-question: font-size:show
+URxvt.font-size.step: 2
+!URxvt.copyCommand: xclip -i -selection clipboard
+!URxvt.pasteCommand: xclip -o -selection clipboard
 URxvt.keysym.C-S-c: perl:clipboard:copy
 URxvt.keysym.C-S-v: perl:clipboard:paste
 ! URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
 ! URxvt.keysym.M-Escape: perl:keyboard-select:activate
 ! URxvt.keysym.M-s: perl:keyboard-select:search
 ! URxvt.keysym.M-u: perl:url-select:select_next
-! URxvt.urlLauncher: firefox
-! URxvt.underlineURLs: true
-! URxvt.urlButton: 1
+URxvt.urlLauncher: firefox
+URxvt.underlineURLs: true
+URxvt.urlButton: 1
