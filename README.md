@@ -13,6 +13,9 @@ My configuration files:
    9) Qtile window manager
    10) Picom
    11) Rofi
+   12) Dunst
+   13) Mpd 
+   14) Ncmpcpp
    
 
 
