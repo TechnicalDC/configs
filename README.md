@@ -8,11 +8,11 @@ My configuration files:
    4) Spectrwm window manager
    5) i3-gaps window manager
    6) Sxhkd
-   7) Urxvt terminal
+   7) Urxvt terminal ( xresources file )
    8) Polybar
    9) Qtile window manager
    10) Picom
-   11) Rofi
+   11) Rofi ( with themes )
    12) Dunst
    13) Mpd 
    14) Ncmpcpp
