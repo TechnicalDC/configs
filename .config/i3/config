@@ -1,8 +1,8 @@
 ###############################
 ###############################
-##		 	     ##
+##		 	                     ##
 ##   I3 CONFIGURATION FILE   ##
-##			     ##
+##			                     ##
 ###############################
 ###############################
 
@@ -214,12 +214,12 @@ bindsym $mod+shift+F12 exec pamixer --set-volume 0
 ######################
 
 #exec feh --bg-fill --randomize /home/dilip/Wallpapers/ &
-#exec nitrogen --restore &
+exec nitrogen --restore &
 exec polybar -c ~/.config/polybar/config i3-bar & 
 exec nm-applet &
 exec telegram-desktop -startintray &
 exec picom --experimental-backends &
-exec wal -R &
+#exec wal -R &
 exec urxvtd -q -o -f &
 #exec conky -c .conky/sidebar-i3 
 #exec compton --config ~/.config/compton/compton.conf
