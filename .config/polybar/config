@@ -54,15 +54,15 @@ module-margin-left = 1
 module-margin-right = 1
 
 font-0 = Ubuntu:pixelsize=10;0
-font-1 = Font Awesome 5 Free Regular:style=Regular:size=10;1
-font-2 = Font Awesome 5 Free Solid:style=Solid:size=10;1
-font-3 = Font Awesome 5 Free Brand:style=Regular:size=10;1
+font-1 = Font Awesome 5 Free Regular:style=Regular:size=9;1
+font-2 = Font Awesome 5 Free Solid:style=Solid:size=9;1
+font-3 = Font Awesome 5 Free Brand:style=Regular:size=9;1
 
-modules-left = i3 bspwm xwindow
+modules-left = bspwm mpd
 modules-right = pulseaudio cpu memory date 
 
 tray-position = right
-tray-padding = 5
+tray-padding = 3
 tray-background = ${colors.background}
 
 separator = " | "
@@ -75,6 +75,7 @@ inherit = bar/main
 
 padding-left = 0
 override-redirect = true
+modules-left = i3 mpd 
 wm-restack = i3
 
 [module/xwindow]
@@ -122,14 +123,14 @@ wrapping-scroll = false
 ;pin-workspaces = true
 
 label-mode-padding = 3
-label-mode-foreground = $foreground
-label-mode-background = $background
+label-mode-foreground = ${colors.foreground}
+label-mode-background = ${colors.background}
 
 ; focused = Active workspace on focused monitor
 label-focused = %index%
-label-focused-background = ${colors.background}
-label-focused-underline = ${colors.foreground} 
-label-focused-foreground = ${colors.highlight}
+label-focused-background = ${colors.highlight}
+label-focused-underline = ${colors.highlight} 
+label-focused-foreground = ${colors.background}
 label-focused-padding = 3
 
 ; unfocused = Inactive workspace on any monitor
@@ -158,12 +159,51 @@ output = VGA1
 
 format = <label>
 label =  %percentage%%
+label-foreground = ${colors.foreground}
+label-background = ${colors.background}
+
+[module/mpd]
+type = internal/mpd
+
+host = 127.0.0.1
+port = 6600
+password =
+
+format-online = <icon-prev> <icon-seekb> <toggle> <icon-seekf> <icon-next> <icon-repeat> <label-song> <label-time>
+format-offline = <label-offline>
+
+label-offline =  Mpd is offline
+label-song = %title%
+label-song-margin = 3
+label-time-margin = 2
+
+icon-seekb = 
+icon-seekb-margin = 1
+icon-prev = 
+icon-prev-margin = 1
+icon-play = 
+icon-play-margin = 1
+icon-pause-margin = 1
+icon-pause = 
+icon-seekf = 
+icon-seekf-margin = 1
+icon-next = 
+icon-next-margin = 1
+icon-repeat = 
+icon-repeat-margin = 1
+icon-stop = 
+icon-stop-margin = 1
+
+toggle-on-foreground = ${colors.highlight}
+toggle-off-foreground = ${colors.foreground}
+
+click-right = ncmpcpp &
 
 [module/cpu]
 type = internal/cpu
 interval = 2
 format-prefix = " "
-format-prefix-foreground = #
+;format-prefix-foreground = #
 ;format-underline = #f90000
 label =  %percentage:2%%
 label-foreground = ${colors.foreground}
@@ -212,14 +252,11 @@ type = internal/date
 interval = 5
 
 date = %a, %d-%m-%Y
-;date-alt = " %Y-%m-%d"
 
 time = "%I:%M %p"
-;time-alt = %H:%M:%S
 
 format-prefix = 
 format-prefix-foreground = #0000ff
-;format-underline = #0a6cf5
 
 label =  %date%    %time%
 label-foreground = ${colors.foreground}
@@ -229,10 +266,14 @@ label-padding = 1
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-volume = <label-volume>
-label-volume =  %percentage%% 
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage%% 
 label-volume-foreground = ${colors.foreground}
 label-volume-padding = 1
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
 
 label-muted =  MUTED!
 label-muted-foreground = ${colors.foreground}
