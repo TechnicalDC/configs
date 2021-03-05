@@ -3,21 +3,19 @@
 My configuration files:
   
    1) Bspwm window manager
-   2) Vim editor
-   3) Ranger file manager
-   4) Spectrwm window manager
-   5) i3-gaps window manager
-   6) Sxhkd
-   7) Urxvt terminal ( xresources file )
-   8) Polybar
-   9) Qtile window manager
-   10) Picom
-   11) Rofi ( with themes )
-   12) Dunst
-   13) Mpd 
-   14) Ncmpcpp
+   2) Vim 
+   3) Neovim
+   4) Nano
+   5) Ranger file manager
+   6) Spectrwm window manager
+   7) i3-gaps window manager
+   8) Sxhkd
+   9) Urxvt terminal ( xresources file )
+   10) Polybar
+   11) Qtile window manager
+   12) Picom
+   13) Rofi ( with themes )
+   14) Dunst
+   15) Mpd 
+   16) Ncmpcpp
    
-
-
-
-          
