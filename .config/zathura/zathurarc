@@ -1,0 +1,38 @@
+# zathurarc
+
+# colors
+set default-bg "#000b1e"
+set default-fg "#16b9c3"
+set completion-bg "#16b9c3"
+set completion-fg "#000b1e"
+set statusbar-bg "#000b1e"
+set statusbar-fg "#16b9c3"
+set inputbar-bg "#000b1e"
+set inputbar-fg "#16b9c3"
+
+set completion-highlight-fg "#16b9c3"
+set completion-highlight-bg "#dc0fa5"
+
+set notification-bg "#dc0fa5"
+set notification-fg "#000b1e"
+
+# font
+set font Fira Code Retina 9
+
+# settings
+set window-height 700
+set window-width 500
+set adjust-open width
+set page-padding 8
+
+# key bindings
+map K navigate previous
+map J navigate next
+map D toggle_page_mode
+map P print
+map r reload
+map R rotate
+map + zoom in
+map - zoom out
+map d recolor
+map <C-q> quit
