@@ -18,4 +18,5 @@ My configuration files:
    14) Dunst
    15) Mpd 
    16) Ncmpcpp
+   17) Zathura
    
