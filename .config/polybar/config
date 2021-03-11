@@ -27,7 +27,7 @@ blue = ${xrdb:color4}
 magenta = ${xrdb:color5}
 cyan = ${xrdb:color6}
 
-highlight = #dc0fa5
+highlight = #579df0
 
 [bar/main]
 ;monitor = ${env:MONITOR:HDMI-1}
@@ -45,7 +45,7 @@ background = ${colors.background}
 foreground = ${colors.foreground}
 
 border-size = 2
-border-color = #dc0fa5
+border-color = ${colors.highlight}
 
 padding-left = 2
 padding-right = 2
@@ -58,11 +58,11 @@ font-1 = Font Awesome 5 Free Regular:style=Regular:size=9;1
 font-2 = Font Awesome 5 Free Solid:style=Solid:size=9;1
 font-3 = Font Awesome 5 Free Brand:style=Regular:size=9;1
 
-modules-left = bspwm mpd
+modules-left = i3 bspwm mpd
 modules-right = pulseaudio cpu memory date 
 
 tray-position = right
-tray-padding = 3
+tray-padding = 4
 tray-background = ${colors.background}
 
 separator = " | "
@@ -122,20 +122,16 @@ wrapping-scroll = false
 ; Only show workspaces on the same output as the bar
 ;pin-workspaces = true
 
-label-mode-padding = 3
-label-mode-foreground = ${colors.foreground}
-label-mode-background = ${colors.background}
-
 ; focused = Active workspace on focused monitor
-label-focused = %index%
-label-focused-background = ${colors.highlight}
-label-focused-underline = ${colors.highlight} 
-label-focused-foreground = ${colors.background}
-label-focused-padding = 3
+label-focused = %{T3}%{T-}
+label-focused-background = ${colors.background}
+label-focused-underline = ${colors.background} 
+label-focused-foreground = ${colors.highlight}
+label-focused-padding = 1
 
 ; unfocused = Inactive workspace on any monitor
-label-unfocused = %index%
-label-unfocused-padding = 3
+label-unfocused = %{T3}%{T-}
+label-unfocused-padding = 1
 label-unfocused-foreground = ${colors.foreground}
 
 ; visible = Active workspace on unfocused monitor
@@ -147,10 +143,7 @@ label-visible-padding = ${self.label-focused-padding}
 ; urgent = Workspace with urgency hint set
 label-urgent = %index%
 label-urgent-underline = ${colors.alert}
-label-urgent-padding = 3
-
-; Separator in between workspaces
-; label-separator = |
+label-urgent-padding = 1
 
 [module/backlight]
 type = internal/xbacklight
@@ -202,10 +195,10 @@ click-right = ncmpcpp &
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
-;format-prefix-foreground = #
+format-prefix = " "
+format-prefix-foreground = ${colors.highlight}
 ;format-underline = #f90000
-label =  %percentage:2%%
+label = %percentage:2%%
 label-foreground = ${colors.foreground}
 label-padding = 1
 ;label-margin = 1
@@ -215,16 +208,14 @@ click-left = urxvt -e htop &
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground}
-;format-underline = #4bffdc
-
-label =  %percentage_used%%
+format-prefix = " "
+format-prefix-foreground = ${colors.highlight}
+label = %percentage_used%%
 label-foreground = ${colors.foreground}
 label-padding = 1
 ;label-margin = 1
 
-click-left = htop &
+click-left = urxvt -e htop &
 
 [module/wlan]
 type = internal/network
@@ -253,12 +244,11 @@ interval = 5
 
 date = %a, %d-%m-%Y
 
-time = "%I:%M %p"
+time = "%H:%M"
 
-format-prefix = 
-format-prefix-foreground = #0000ff
-
-label =  %date%    %time%
+format-prefix = 
+format-prefix-foreground = ${colors.highlight}
+label = %date%, %time%
 label-foreground = ${colors.foreground}
 label-padding = 1
 ;label-margin = 1
@@ -272,10 +262,13 @@ label-volume-foreground = ${colors.foreground}
 label-volume-padding = 1
 
 ramp-volume-0 = 
+ramp-volume-0-foreground = ${colors.highlight}
 ramp-volume-1 = 
+ramp-volume-1-foreground = ${colors.highlight}
 ramp-volume-2 = 
+ramp-volume-2-foreground = ${colors.highlight}
 
-label-muted =  MUTED!
+label-muted =  
 label-muted-foreground = ${colors.foreground}
 label-muted-padding = 1
 
