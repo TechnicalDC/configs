@@ -1,49 +1,71 @@
-
-!! URXVT CONFIGURATIONS
-!! Colorscheme
+!! COLOR SCHEME 
 ! special
-*.foreground:   #16b9c3
-*.background:   #000b1e
-*.cursorColor:  #16b9c3
+*.foreground:   #ddd
+*.background:   #242730
+*.cursorColor:  #ddd
 
 ! black
-*.color0:       #040005
-*.color8:       #040005
+*.color0:       #1b1918
+*.color8:       #766e6b
 
 ! red
-*.color1:       #6E0163
-*.color9:       #6E0163
+*.color1:       #f22c40
+*.color9:       #f22c40
 
 ! green
-*.color2:       #BD0354
-*.color10:      #BD0354
+*.color2:       #5ab738
+*.color10:      #5ab738
 
 ! yellow
-*.color3:       #970266
-*.color11:      #970266
+*.color3:       #d5911a
+*.color11:      #d5911a
 
 ! blue
-*.color4:       #651993
-*.color12:      #651993
+*.color4:       #407ee7
+*.color12:      #407ee7
 
 ! magenta
-*.color5:       #4A3DBF
-*.color13:      #4A3DBF
+*.color5:       #6666ea
+*.color13:      #6666ea
 
 ! cyan
-*.color6:       #962098
-*.color14:      #962098
+*.color6:       #00ad9c
+*.color14:      #00ad9c
 
 ! white
-*.color7:       #cf9bd4
-*.color15:      #cf9bd4
+*.color7:       #a8a19f
+*.color15:      #f1efee
+Xft.dpi: 96
+Xft.antialias: true
+Xft.hinting: true
+Xft.rgba: rgba
+Xft.autohint: true
+Xft.hintstyle: hintfull
+Xft.lcdfilter: lcdfilter
+
+!! UXTERM CONFIGURATION
+UXTerm*renderFont: true
+UXTerm*faceName: xft:Fira Code Medium:style=Regular:pixelsize=12
+UXTerm*faceSize: 10
+UXTerm*utf8: 2
+UXTerm*locale: true
+UXTerm*savelines: 5120
 
 
+!! XTERM CONFIGURATION
+XTerm*renderFont: true
+XTerm*faceName: xft:Fira Code Medium:style=Regular:pixelsize=12
+XTerm*faceSize: 10
+XTerm*utf8: 2
+XTerm*locale: true
+XTerm*savelines: 5120
+
+!! URXVT CONFIGGURATION
 !! URxvt Appearance
 URxvt.letterSpace: 0
 URxvt.lineSpace: 0
 URxvt.geometry: 92x24
-URxvt.internalBorder: 24
+URxvt.internalBorder: 16
 URxvt.cursorBlink: true
 URxvt.cursorUnderline: false
 URxvt.saveline: 5120
@@ -54,8 +76,8 @@ URxvt.depth: 24
 URxvt.iso14755: false
 
 !! URvxt Font
-URxvt.font: xft:Fira Code Retina:style=Retina:pixelsize=12
-URxvt.boldFont: xft:Fira Code:style=Bold:pixelsize:12
+URxvt.font: xft:Fira Code Medium:style=Regular:pixelsize=12
+URxvt.boldFont: xft:Fira Code Medium:style=Bold:pixelsize:12
 
 
 !!  Extensions
