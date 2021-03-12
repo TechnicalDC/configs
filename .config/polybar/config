@@ -27,7 +27,7 @@ blue = ${xrdb:color4}
 magenta = ${xrdb:color5}
 cyan = ${xrdb:color6}
 
-highlight = #579df0
+highlight = ${xrdb:cursorColor}
 
 [bar/main]
 ;monitor = ${env:MONITOR:HDMI-1}
@@ -44,7 +44,7 @@ line-color = #f00
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-border-size = 2
+border-size = 1
 border-color = ${colors.highlight}
 
 padding-left = 2
@@ -58,7 +58,7 @@ font-1 = Font Awesome 5 Free Regular:style=Regular:size=9;1
 font-2 = Font Awesome 5 Free Solid:style=Solid:size=9;1
 font-3 = Font Awesome 5 Free Brand:style=Regular:size=9;1
 
-modules-left = i3 bspwm mpd
+modules-left = bspwm mpd
 modules-right = pulseaudio cpu memory date 
 
 tray-position = right
@@ -75,6 +75,7 @@ inherit = bar/main
 
 padding-left = 0
 override-redirect = true
+;border-color = ${colors.background}
 modules-left = i3 mpd 
 wm-restack = i3
 
@@ -123,15 +124,15 @@ wrapping-scroll = false
 ;pin-workspaces = true
 
 ; focused = Active workspace on focused monitor
-label-focused = %{T3}%{T-}
+label-focused = %index%
 label-focused-background = ${colors.background}
 label-focused-underline = ${colors.background} 
 label-focused-foreground = ${colors.highlight}
-label-focused-padding = 1
+label-focused-padding = 3
 
 ; unfocused = Inactive workspace on any monitor
-label-unfocused = %{T3}%{T-}
-label-unfocused-padding = 1
+label-unfocused = %index%
+label-unfocused-padding = ${self.label-focused-padding}
 label-unfocused-foreground = ${colors.foreground}
 
 ; visible = Active workspace on unfocused monitor
@@ -143,7 +144,7 @@ label-visible-padding = ${self.label-focused-padding}
 ; urgent = Workspace with urgency hint set
 label-urgent = %index%
 label-urgent-underline = ${colors.alert}
-label-urgent-padding = 1
+label-urgent-padding = ${self.label-focused-padding}
 
 [module/backlight]
 type = internal/xbacklight
@@ -151,7 +152,8 @@ type = internal/xbacklight
 output = VGA1
 
 format = <label>
-label =  %percentage%%
+format-prefix =  
+label = %percentage%%
 label-foreground = ${colors.foreground}
 label-background = ${colors.background}
 
@@ -242,13 +244,13 @@ label-connected-padding = 1
 type = internal/date
 interval = 5
 
-date = %a, %d-%m-%Y
+date = "%d %b"
 
-time = "%H:%M"
+time = %H:%M
 
 format-prefix = 
 format-prefix-foreground = ${colors.highlight}
-label = %date%, %time%
+label =  %date%, %time%
 label-foreground = ${colors.foreground}
 label-padding = 1
 ;label-margin = 1
