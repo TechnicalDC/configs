@@ -1,40 +1,73 @@
 !! COLOR SCHEME 
+
 ! special
-*.foreground:   #ddd
-*.background:   #242730
-*.cursorColor:  #ddd
+#define FOREGROUND 	#ddd
+#define BACKGROUND	#222
+#define HIGHLIGHT 	#0f5ff9
 
 ! black
-*.color0:       #1b1918
-*.color8:       #766e6b
+#define COLOR0		#1b1918
+#define COLOR8		#766e6b
+! red
+#define COLOR1		#f22c40
+#define COLOR9		#f22c40
+! green
+#define COLOR2		#5ab738
+#define COLOR10		#5ab738
+! yellow
+#define COLOR3		#d5911a
+#define COLOR11		#d5911a
+! blue
+#define COLOR4		#407ee7
+#define COLOR12		#407ee7
+! magenta
+#define COLOR5		#6666ea
+#define COLOR13		#6666ea
+! cyan
+#define COLOR6		#00ad9c
+#define COLOR14		#00ad9c
+! white
+#define COLOR7		#a8a19f
+#define COLOR15		#f1efee
+
+! special
+*.foreground:   FOREGROUND
+*.background:   BACKGROUND
+*.cursorColor:	HIGHLIGHT  
+
+! black
+*.color0:       COLOR0
+*.color8:       COLOR8
 
 ! red
-*.color1:       #f22c40
-*.color9:       #f22c40
+*.color1:       COLOR1
+*.color9:       COLOR9
 
 ! green
-*.color2:       #5ab738
-*.color10:      #5ab738
+*.color2:       COLOR2
+*.color10:      COLOR10
 
 ! yellow
-*.color3:       #d5911a
-*.color11:      #d5911a
+*.color3:       COLOR3
+*.color11:      COLOR11
 
 ! blue
-*.color4:       #407ee7
-*.color12:      #407ee7
+*.color4:       COLOR4
+*.color12:      COLOR12
 
 ! magenta
-*.color5:       #6666ea
-*.color13:      #6666ea
+*.color5:       COLOR5
+*.color13:      COLOR13
 
 ! cyan
-*.color6:       #00ad9c
-*.color14:      #00ad9c
+*.color6:       COLOR6
+*.color14:      COLOR14
 
 ! white
-*.color7:       #a8a19f
-*.color15:      #f1efee
+*.color7:       COLOR7
+*.color15:      COLOR15
+
+!!  XFONTS CONFIG
 Xft.dpi: 96
 Xft.antialias: true
 Xft.hinting: true
@@ -50,7 +83,6 @@ UXTerm*faceSize: 10
 UXTerm*utf8: 2
 UXTerm*locale: true
 UXTerm*savelines: 5120
-
 
 !! XTERM CONFIGURATION
 XTerm*renderFont: true
